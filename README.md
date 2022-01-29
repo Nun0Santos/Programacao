@@ -1,3 +1,3 @@
 # Programação
 
-## Apontamentos da cadeira de Programação 20/21 21/22
+## Apontamentos da cadeira de Programação 21/22

@@ -8,17 +8,19 @@ int G0Ex3();
 int G0Ex4();
 int G0Ex5();
 void printArray();
-int G0Ex6();
+void G0Ex6();
 
 int main(){
   
     int tab[TAM] = {1,2,3,9,8,2,3,4,9,7};
     int tab1[TAM1] = {1,4,5,2,8,9};
-    printf("Maior elemento: %d\n",G0Ex1(tab,TAM));
+    int tab2[6] = {1,-2,3,4,-5,6};
+    /*printf("Maior elemento: %d\n",G0Ex1(tab,TAM));
     printf("O maior valor surgio na posicao: %d\n",G0Ex2(tab,TAM));
     printf("O maior elemento surge %d vezes\n",G0Ex3(tab,TAM));
     printf("O numero que se repete mais vezes e : %d\n",G0Ex4(tab,TAM));
-    printf("Return: %d\n",G0Ex5(tab1,TAM1,30));
+    printf("Return: %d\n",G0Ex5(tab1,TAM1,30));*/
+    G0Ex6(tab2,6,8);
     return 0;
 }
 
@@ -95,6 +97,18 @@ void printArray(int tabela[], int tam){
     }
 }
 
-int G0Ex6(int tabela[], int tam, int valor){
+void G0Ex6(int tabela[], int dim, int valor){
+    if(dim < 3){
+        printf("Dimensao da tabela invalida (>=3)");
+    }
+    for(int i=0; i<dim; ++i){
+        for(int j=i+1; j<dim; ++j){
+            for(int x=j+1; x<dim; ++x){
+                 if(tabela[i] + tabela[j]  + tabela[x] == valor){
+                     printf("%d %d %d\tsoma=%d\n",tabela[i],tabela[j],tabela[x],tabela[i]+tabela[j]+tabela[x]);
+            }
+            }
+        }
+    }
     
 }

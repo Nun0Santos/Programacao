@@ -1,21 +1,24 @@
 #include <stdio.h>
 #define TAM 10
+#define TAM1 5
 
 int G0Ex1();
 int G0Ex2();
 int G0Ex3();
 int G0Ex4();
 int G0Ex5();
+void printArray();
+int G0Ex6();
 
 int main(){
   
     int tab[TAM] = {1,2,3,9,8,2,3,4,9,7};
-    int tab1[TAM] = {4,6,7,9,1,3,2,10,17};
+    int tab1[TAM1] = {1,4,5,2,8,9};
     printf("Maior elemento: %d\n",G0Ex1(tab,TAM));
     printf("O maior valor surgio na posicao: %d\n",G0Ex2(tab,TAM));
     printf("O maior elemento surge %d vezes\n",G0Ex3(tab,TAM));
     printf("O numero que se repete mais vezes e : %d\n",G0Ex4(tab,TAM));
-    printf("Return: %d\n",G0Ex5(tab1,TAM,30));
+    printf("Return: %d\n",G0Ex5(tab1,TAM1,30));
     return 0;
 }
 
@@ -66,21 +69,32 @@ int G0Ex4(int tabela[], int tam){ //Nao esta bem feita
     return nRep;
 }
 
-int G0Ex5(int tab1[], int tam, int num){
-    int aux=0,x=0;
-    /*for(int i=0; i<tam; ++i){
-        for(int j=0; j<tam; ++j){
-            if(tab1[i] > tab1[j]){
-            tab1[i] = aux;
-            tab1[x] = tab1[i+1];
-            tab1[i+1] = aux;
+int G0Ex5(int tabela[], int tam, int num){ //Duvida bubble sort
+    int aux=0,troca=0;
+    for(int i=0; i<tam-1; ++i){
+        troca=0;
+        for(int j=0; j<tam-i-1; ++j){
+            if(tabela[i] > tabela[i+1]){
+                aux = tabela[i];
+                tabela[i]=tabela[i+1];
+                tabela[i+1]=aux;
+                troca=1;
             }
         }
-    }*/
-    for(int i=0; i<tam; ++i){
-        if(tab1[i] == num){
-            return 1;
-        }
+        if(troca==0)
+            break;  
     }
+    printArray(tabela,tam);
     return 0;
+}
+
+void printArray(int tabela[], int tam){
+    for(int i=0; i<tam; ++i){
+        printf("Tab1[%d] = %d\n",i,tabela[i]);
+        
+    }
+}
+
+int G0Ex6(int tabela[], int tam, int valor){
+    
 }

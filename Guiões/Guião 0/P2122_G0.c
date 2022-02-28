@@ -11,6 +11,7 @@ int G0Ex5();
 void printArray();
 void G0Ex6();
 void G0Ex8();
+void G0EX8();
 
 int main(){
   
@@ -18,13 +19,16 @@ int main(){
     int tab1[TAM1] = {1,4,5,2,8};
     int tab2[6] = {1,-2,3,4,-5,6};
     int mat[N][3];
+    int mat1[N][3] = {{1,4,5},
+                     {6,9,3}};
     /*printf("Maior elemento: %d\n",G0Ex1(tab,TAM));
     printf("O maior valor surgio na posicao: %d\n",G0Ex2(tab,TAM));
     printf("O maior elemento surge %d vezes\n",G0Ex3(tab,TAM));
-    printf("O numero que se repete mais vezes e : %d\n",G0Ex4(tab,TAM));*/
+    printf("O numero que se repete mais vezes e : %d\n",G0Ex4(tab,TAM));
     printf("Return: %d\n",G0Ex5(tab1,TAM1,30));*/
     //G0Ex6(tab2,6,8);
     //G0Ex8(mat,2);
+    G0Ex9(mat1,2);
     return 0;
 }
 
@@ -117,7 +121,7 @@ void G0Ex6(int tabela[], int dim, int valor){
     
 }
 
-void G0Ex8(char matriz[][3], int nLinhas){
+void G0Ex8(int matriz[][3], int nLinhas){
     for(int i=0; i<3; ++i){
         for(int j=0; i<nLinhas; ++j){
             for(int x=0; x<3; ++x){
@@ -125,6 +129,15 @@ void G0Ex8(char matriz[][3], int nLinhas){
                     printf("Matriz[%d][%d] ",j,x);
                 }
             }
+        }
+    }
+
+}
+
+void G0Ex9(int matriz[][3], int nLinhas){
+    for(int i=0; i<nLinhas; ++i){
+        for(int j=0; j<3; ++j){
+            printf("Matriz[%d][%d] = %d\n",i,j,matriz[i][j]);
         }
     }
 

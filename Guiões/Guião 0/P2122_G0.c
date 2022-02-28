@@ -25,10 +25,10 @@ int main(){
     printf("O maior valor surgio na posicao: %d\n",G0Ex2(tab,TAM));
     printf("O maior elemento surge %d vezes\n",G0Ex3(tab,TAM));
     printf("O numero que se repete mais vezes e : %d\n",G0Ex4(tab,TAM));
-    printf("Return: %d\n",G0Ex5(tab1,TAM1,30));*/
+    printf("Return: %d\n",G0Ex5(tab1,TAM1,20));*/
     //G0Ex6(tab2,6,8);
     //G0Ex8(mat,2);
-    G0Ex9(mat1,2);
+   // G0Ex9(mat1,2);
     return 0;
 }
 
@@ -79,15 +79,15 @@ int G0Ex4(int tabela[], int tam){ //Nao esta bem feita
     return nRep;
 }
 
-int G0Ex5(int tabela[], int tam, int num){ //Duvida bubble sort
+int G0Ex5(int tabela[], int tam, int num){
     int aux=0,troca=0;
     for(int i=0; i<tam-1; ++i){
         troca=0;
         for(int j=0; j<tam-i-1; ++j){
-            if(tabela[i] > tabela[i+1]){
-                aux = tabela[i];
-                tabela[i]=tabela[i+1];
-                tabela[i+1]=aux;
+            if(tabela[j] > tabela[j+1]){
+                aux = tabela[j];
+                tabela[j]=tabela[j+1];
+                tabela[j+1]=aux;
                 troca=1;
             }
         }
@@ -95,6 +95,10 @@ int G0Ex5(int tabela[], int tam, int num){ //Duvida bubble sort
             break;  
     }
     printArray(tabela,tam);
+    for(int i=0; i<tam; ++i){
+        if(tabela[i] == num)
+            return 1;
+    }
     return 0;
 }
 
@@ -120,7 +124,6 @@ void G0Ex6(int tabela[], int dim, int valor){
     }
     
 }
-
 void G0Ex8(int matriz[][3], int nLinhas){
     for(int i=0; i<3; ++i){
         for(int j=0; i<nLinhas; ++j){

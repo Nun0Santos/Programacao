@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <string.h>
+
 #define TAM 10
 #define TAM1 5
 #define N 100
@@ -11,7 +13,10 @@ int G0Ex5();
 void printArray();
 void G0Ex6();
 void G0Ex8();
-void G0EX8();
+void G0EX9();
+int G0Ex10();
+void G0Ex11();
+void G0Ex12();
 
 int main(){
   
@@ -21,14 +26,22 @@ int main(){
     int mat[N][3];
     int mat1[N][3] = {{1,4,5},
                      {6,9,3}};
+
+    int mat2[3][3] = {{6,1,8},
+                     {7,5,3},
+                     {2,9,4}}; 
+    char string[30];
     /*printf("Maior elemento: %d\n",G0Ex1(tab,TAM));
     printf("O maior valor surgio na posicao: %d\n",G0Ex2(tab,TAM));
     printf("O maior elemento surge %d vezes\n",G0Ex3(tab,TAM));
     printf("O numero que se repete mais vezes e : %d\n",G0Ex4(tab,TAM));
-    printf("Return: %d\n",G0Ex5(tab1,TAM1,20));*/
-    //G0Ex6(tab2,6,8);
+    printf("Return: %d\n",G0Ex5(tab1,TAM1,20));
+    G0Ex6(tab2,6,8);*/
     //G0Ex8(mat,2);
-   // G0Ex9(mat1,2);
+    //G0Ex9(mat1,2);
+    //printf("%d\n",G0Ex10(mat2));
+    //G0Ex11("Hoje e Domingo!");
+    G0Ex12("Hoje e Domingo!");
     return 0;
 }
 
@@ -121,20 +134,19 @@ void G0Ex6(int tabela[], int dim, int valor){
             }
             }
         }
-    }
-    
+    }   
 }
-void G0Ex8(int matriz[][3], int nLinhas){
+
+void G0Ex8(int matriz[][3], int nLinhas){ //Nao esta feito
     for(int i=0; i<3; ++i){
         for(int j=0; i<nLinhas; ++j){
             for(int x=0; x<3; ++x){
                 if(x==i){
-                    printf("Matriz[%d][%d] ",j,x);
+                    printf("Matriz[%d][%d]\n",j,x);
                 }
             }
         }
     }
-
 }
 
 void G0Ex9(int matriz[][3], int nLinhas){
@@ -143,5 +155,66 @@ void G0Ex9(int matriz[][3], int nLinhas){
             printf("Matriz[%d][%d] = %d\n",i,j,matriz[i][j]);
         }
     }
+}
 
+int G0Ex10(int mat[3][3]){ // Não está bem
+    int linha1,linha2,linha3,coluna1,coluna2,coluna3,dig1,dig2;
+    int somaL1=0, somaL2=0, somaL3=0, somaC1=0, somaC2=0, somaC3=0, somaDig1=0,somaDig2=0;
+    for(int i=0; i<3; ++i){
+        for(int j=0; j<3; ++j){
+            if(i==0){
+                somaL1 += mat[i][j];
+            }
+            if(i == 1){
+                somaL2 += mat[i][j];
+            }
+             if(i == 2){
+                somaL3 += mat[i][j];
+            } 
+            if(j == 0){
+                somaC1+= mat[i][j];
+            }
+             if(j == 1){
+                somaC2 += mat[i][j];
+            }
+             if(j == 2){
+                somaC3 += mat[i][j];
+            }
+             if(i == j){ //Dig Principal
+                somaDig1 += mat[i][j];
+            }
+             /*if(i == ){ //DIg Secundária
+                somaL2 += mat[i][j];
+            }*/
+            if(somaL1 == somaL2 == somaL3 == somaC1 == somaC2 == somaC3 == somaDig1){
+                return 1;
+            }
+            else{
+                return 0;
+            }
+        }
+    }
+}
+
+void G0Ex11(char str[]){
+    char strInvertida[30]; 
+    int i,j=0;
+    i = strlen(str)-1;
+
+    for(i; i>=0; --i){
+        strInvertida[j] = str[i];
+        ++j;;
+    }
+    printf("String invertida : %s",strInvertida);
+}
+
+void G0Ex12(char str[]){
+    int tam = strlen(str)-1;
+
+    for(int i=0; i<=tam; ++i){
+        if(str[i] == ' '){
+            //str[i] = '\n';
+        }
+    }
+    printf("%s",str);
 }

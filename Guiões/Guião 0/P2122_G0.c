@@ -17,10 +17,13 @@ void G0EX9();
 int G0Ex10();
 void G0Ex11();
 void G0Ex12();
+void G0Ex13();
+void G0Ex15();
+
 
 int main(){
   
-    int tab[TAM] = {1,2,3,9,8,2,3,4,9,7};
+    int tab[TAM] = {1,-2,10,9,8,2,9,4,-4,10};
     int tab1[TAM1] = {1,4,5,2,8};
     int tab2[6] = {1,-2,3,4,-5,6};
     int mat[N][3];
@@ -30,28 +33,32 @@ int main(){
     int mat2[3][3] = {{6,1,8},
                      {7,5,3},
                      {2,9,4}}; 
+    
+    char string1[30] = {"Hoje  é    Domingo!"};
+    char string2[30] = {"Hoje é Domingo!"};
     char string[30];
-    /*printf("Maior elemento: %d\n",G0Ex1(tab,TAM));
-    printf("O maior valor surgio na posicao: %d\n",G0Ex2(tab,TAM));
-    printf("O maior elemento surge %d vezes\n",G0Ex3(tab,TAM));
-    printf("O numero que se repete mais vezes e : %d\n",G0Ex4(tab,TAM));
-    printf("Return: %d\n",G0Ex5(tab1,TAM1,20));
-    G0Ex6(tab2,6,8);*/
+    //printf("Maior elemento: %d\n",G0Ex1(tab,TAM));
+    //printf("O maior valor surgio na posicao: %d\n",G0Ex2(tab,TAM));
+    //printf("O maior elemento surge %d vezes\n",G0Ex3(tab,TAM));
+    //printf("O numero que se repete mais vezes e : %d\n",G0Ex4(tab,TAM));
+    //printf("Return: %d\n",G0Ex5(tab,TAM,20));
+    //G0Ex6(tab2,6,8);
     //G0Ex8(mat,2);
     //G0Ex9(mat1,2);
     //printf("%d\n",G0Ex10(mat2));
-    //G0Ex11("Hoje e Domingo!");
-    G0Ex12("Hoje e Domingo!");
+    //G0Ex11("Hoje      e     Domingo!     ");
+    //G0Ex12(string1);
+    //G0Ex13(string1, string2, string);
+    G0Ex15(string1);
     return 0;
 }
 
 int G0Ex1(int tabela[], int tam){
-    int maior=0;
+    int maior=tabela[0]; // Dizer sempre que o maior é igual ao primeiro elemento
     for(int i =0; i<tam; ++i){
         if(tabela[i] > maior){
             maior=tabela[i];
-        }
-       
+        }  
     }
     return maior;
 }
@@ -62,13 +69,13 @@ int G0Ex2(int tabela[], int tam){
     for(int i=0; i<tam; ++i){
         if(tabela[i] == maior){
             pos=i;
-            return pos;
         }
     }
+    return pos;
 }
 
 int G0Ex3(int tabela[], int tam){
-    int contador=0,maior=0;
+    int contador=0,maior=tabela[0];
     maior = G0Ex1(tabela,tam); //Retorna o maior elemento
     for(int i=0; i<tam; ++i){
         if(maior == tabela[i]){
@@ -78,15 +85,20 @@ int G0Ex3(int tabela[], int tam){
     return contador;
 }
 
-int G0Ex4(int tabela[], int tam){ //Nao esta bem feita
-    int nRep=0,contador=0;
+int G0Ex4(int tabela[], int tam){
+    int nRep=0,contador; 
+    int num =0,maxConta=0;
+    
     for(int i=0; i<tam; ++i){
+        contador = 1;
         for(int j=i+1; j<tam; ++j){
             if(tabela[i] == tabela[j]){
-                nRep=tabela[i];
-                ++contador;
-
+                ++contador;       
             }
+        }
+        if(contador > maxConta || contador == maxConta && tabela[i] > nRep){
+                maxConta = contador;
+                nRep = tabela[i];
         }
     }
     return nRep;
@@ -108,7 +120,7 @@ int G0Ex5(int tabela[], int tam, int num){
             break;  
     }
     printArray(tabela,tam);
-    for(int i=0; i<tam; ++i){
+    for(int i=0; i<tam && tabela[i] <= num; ++i){
         if(tabela[i] == num)
             return 1;
     }
@@ -157,7 +169,7 @@ void G0Ex9(int matriz[][3], int nLinhas){
     }
 }
 
-int G0Ex10(int mat[3][3]){ // Não está bem
+int G0Ex10(int mat[3][3]){ // falta a diagonal secundaria
     int linha1,linha2,linha3,coluna1,coluna2,coluna3,dig1,dig2;
     int somaL1=0, somaL2=0, somaL3=0, somaC1=0, somaC2=0, somaC3=0, somaDig1=0,somaDig2=0;
     for(int i=0; i<3; ++i){
@@ -213,8 +225,50 @@ void G0Ex12(char str[]){
 
     for(int i=0; i<=tam; ++i){
         if(str[i] == ' '){
-            //str[i] = '\n';
+            str[i] = '\n';
         }
     }
-    printf("%s",str);
+    for(int i = 0; i<=tam; ++i){
+        printf("%c",str[i]);
+    }
 }
+
+void G0Ex13(char str1[], char str2[], char str3[]){ //Não está acabada
+    int tam1 = strlen(str1);
+    int tam2 = strlen(str2);
+    int x=0;
+    for(int i = 0; i< tam1; ++i){
+        for(int j = 0; j<tam2; ++j){
+            if(strcmp(str1,str2) == 0 && tam1 == tam2){
+                strcpy(str3,"Conteudo Igual!");
+            }
+            if(strcmp(str1,str2) != 0 && tam1 == tam2){
+                strcpy(str3, "Tamanho igual!");
+            }
+            else{
+                if(tam1 > tam2){
+                    strcat(str2,str1);
+                    strcpy(str3,str2);
+                }
+                strcat(str1,str2);
+                strcpy(str3,str1);
+            }
+        }
+    }
+    printf("%s",str3);
+}
+
+void G0Ex15(char str[]){
+    int j=1;
+ 
+    for(int i = 1; str[i]; ++i){
+        if(str[i] != ' ' || str[i - 1] != ' '){
+            str[j] = str[i];
+            ++j;
+        }
+    }
+    str[j] = '\0';
+    printf("%s\n",str);
+}
+
+z

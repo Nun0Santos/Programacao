@@ -1,5 +1,7 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
+#include <math.h>
 
 #define TAM 10
 #define TAM1 5
@@ -13,13 +15,13 @@ int G0Ex5();
 void printArray();
 void G0Ex6();
 void G0Ex8();
-void G0EX9();
+void G0Ex9();
+int validaCond();
 int G0Ex10();
 void G0Ex11();
 void G0Ex12();
 void G0Ex13();
 void G0Ex15();
-
 
 int main(){
   
@@ -34,8 +36,8 @@ int main(){
                      {7,5,3},
                      {2,9,4}}; 
     
-    char string1[30] = {"Hoje  é    Domingo!"};
-    char string2[30] = {"Hoje é Domingo!"};
+    char string1[30] = {"Hoje é Domingo!"};
+    char string2[30] = {"Hoje   é   Domingo!"};
     char string[30];
     //printf("Maior elemento: %d\n",G0Ex1(tab,TAM));
     //printf("O maior valor surgio na posicao: %d\n",G0Ex2(tab,TAM));
@@ -43,10 +45,10 @@ int main(){
     //printf("O numero que se repete mais vezes e : %d\n",G0Ex4(tab,TAM));
     //printf("Return: %d\n",G0Ex5(tab,TAM,20));
     //G0Ex6(tab2,6,8);
-    //G0Ex8(mat,2);
-    //G0Ex9(mat1,2);
+    //G0Ex8(mat,3);
+    // G0Ex9(mat1,2);
     //printf("%d\n",G0Ex10(mat2));
-    //G0Ex11("Hoje      e     Domingo!     ");
+    G0Ex11("Hoje e Domingo!");
     //G0Ex12(string1);
     //G0Ex13(string1, string2, string);
     G0Ex15(string1);
@@ -137,35 +139,55 @@ void printArray(int tabela[], int tam){
 void G0Ex6(int tabela[], int dim, int valor){
     if(dim < 3){
         printf("Dimensao da tabela invalida (>=3)");
+        exit(0);
     }
     for(int i=0; i<dim; ++i){
         for(int j=i+1; j<dim; ++j){
             for(int x=j+1; x<dim; ++x){
-                 if(tabela[i] + tabela[j]  + tabela[x] == valor){
+                if(tabela[i] + tabela[j]  + tabela[x] == valor){
                      printf("%d %d %d\tsoma=%d\n",tabela[i],tabela[j],tabela[x],tabela[i]+tabela[j]+tabela[x]);
-            }
+                }
             }
         }
     }   
 }
 
-void G0Ex8(int matriz[][3], int nLinhas){ //Nao esta feito
-    for(int i=0; i<3; ++i){
-        for(int j=0; i<nLinhas; ++j){
-            for(int x=0; x<3; ++x){
-                if(x==i){
-                    printf("Matriz[%d][%d]\n",j,x);
-                }
+void G0Ex8(int matriz[][3], int nLinhas){
+    int num;
+    for(int i=0; i<nLinhas; ++i){ //linhas
+        for(int j=0; j<3; ++j){ //colunas
+            if(j==0){
+                do{ 
+                    printf("Número = ");
+                    scanf("%d",&num);
+                }while(validaCond(num,matriz,i) == 0); 
+                matriz[i][j] = num;
+            } 
+            else{ // Entra aqui sempre que o j != 0
+                matriz[i][j] = pow(matriz[i][0],j+1);
             }
         }
     }
+    G0Ex9(matriz,3);
+}
+int validaCond(int v, int a[][3], int lin){ //lin-> LInha a preencher se entrar a linha 4 tem de ir verificar a 0 1 2 3
+    int i;
+
+    if(v < 1 || v > 100)
+        return 0;
+    for(i = 0; i<lin; ++i){
+        if(a[i][0] == v)
+            return 0;
+    }
+    return 1;
 }
 
 void G0Ex9(int matriz[][3], int nLinhas){
     for(int i=0; i<nLinhas; ++i){
         for(int j=0; j<3; ++j){
-            printf("Matriz[%d][%d] = %d\n",i,j,matriz[i][j]);
+            printf("%d\t",matriz[i][j]);
         }
+        putchar('\n');
     }
 }
 
@@ -195,8 +217,9 @@ int G0Ex10(int mat[3][3]){ // falta a diagonal secundaria
              if(i == j){ //Dig Principal
                 somaDig1 += mat[i][j];
             }
-             /*if(i == ){ //DIg Secundária
-                somaL2 += mat[i][j];
+             /*if(j == 1 ){ //DIg Secundária (a linha cresce a coluna decresce)
+                somaDig2 += mat[i][j];
+                printf("%d",somaDig2);
             }*/
             if(somaL1 == somaL2 == somaL3 == somaC1 == somaC2 == somaC3 == somaDig1){
                 return 1;
@@ -217,7 +240,8 @@ void G0Ex11(char str[]){
         strInvertida[j] = str[i];
         ++j;;
     }
-    printf("String invertida : %s",strInvertida);
+
+    printf("String invertida : %s\n",str);
 }
 
 void G0Ex12(char str[]){
@@ -270,5 +294,3 @@ void G0Ex15(char str[]){
     str[j] = '\0';
     printf("%s\n",str);
 }
-
-z

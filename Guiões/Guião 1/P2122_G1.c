@@ -2,12 +2,22 @@
 #include <stdlib.h>
 #define TAM 7
 #define TAM1 10
+
+#define L1 3
+#define C1 2
+#define L2 4
+#define C2 3
+
 void G1Ex1();
 void G1Ex2();
 void G1Ex3();
 void printArray();
 void G1Ex4();
 int G1Ex5();
+void G1Ex7();
+void G1Ex14();
+void escreve();
+int G1Ex15();
 
 int main(){
     float v1 = 2.3, v2 = 5.1, v3 = 7.9;
@@ -15,7 +25,15 @@ int main(){
     int pares=0,impares=0, maiorValor=0, posMaiorValor=0;
     int tab1[TAM1] = {1,3,7,5,2,10,9,8,12,6};
     int tab2[TAM] = {1,3,2,10,9,7,4};
+    int primMaior, segMaior;
+    int mat1[L1][C1] = {{1,2}, 
+                        {4,1}, 
+                        {5,6}};
 
+    int B[L1][C1] = {{1,2}, 
+                    {4,1}, 
+                    {5,6}};                    
+    
     //G1Ex1();
     /*printf("Antes v1=%.2f\tv2=%.2f\tv3=%.2f\t\n",v1,v2,v3);
     G1Ex2(&v1,&v2,&v3);
@@ -23,8 +41,11 @@ int main(){
     //G1Ex3(tab,TAM1);
     /*G1Ex4(tab,TAM1,&pares,&impares,&maiorValor,&posMaiorValor);
     printf("Existem %d números pares, %d números ímpares. O maior número é o %d e está na posição %d.\n",pares,impares,maiorValor,posMaiorValor);*/
-    printf("Comuns: %d\n",G1Ex5(tab1,TAM1,tab2,TAM));
-
+    //printf("Comuns: %d\n",G1Ex5(tab1,TAM1,tab2,TAM));
+    //G1Ex7(tab2,TAM,&primMaior, &segMaior);
+    //printf("1º-%d\t2º-%d\n",primMaior,segMaior);
+    //G1Ex14();
+    //printf("%d\n",G1Ex15(L1,C1,mat1));
 }
 
 void G1Ex1(){
@@ -116,4 +137,47 @@ int G1Ex5(int *tabA, int tamA, int *tabB, int tamB){
         }
     }
     return cont;
+}
+
+void G1Ex7(int *tab, int tam, int *prim, int *seg){//Não está bem feito
+    *prim = tab[0];
+    *seg = tab[0];
+     int aux;
+     printArray(tab,tam);
+    for(int i=0; i<tam; ++i){
+        if(tab[i] > *prim || *prim > *seg){
+            *prim = tab[i];
+            *seg = tab[i-1];
+        }
+
+    }
+}
+
+void G1Ex14(){
+    int mat1[L1][C1] = {{1,2}, {3,4}, {5,6}};
+    int mat2[L2][C2] = {{1,2,3}, {4,5,6}, {7,8,9}, {10,11,12}};
+
+    printf("\nMatriz mat1:\n");
+    escreve(L1,C1,mat1);
+
+    printf("\nMatriz mat2:\n");
+    escreve(L2,C2,mat2);
+}
+
+void escreve(int n_lin, int n_col,int mat1[][n_col]){
+   for(int i = 0; i<n_lin; ++i){
+        for(int j = 0; j<n_col; ++j){
+            printf("%d\t",mat1[i][j]);
+        }   
+         putchar('\n');
+    }
+}
+
+int G1Ex15(int nLin, int nCol, int mat[][nCol]){
+   
+    for(int i=0; i<nLin; ++i){
+        for(int j=0; j<nCol; ++j){
+        }
+    }
+    return 1;
 }

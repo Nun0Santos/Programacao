@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#define TAM 7
+#define TAM 8
 #define TAM1 10
 
 #define L1 3
@@ -13,8 +13,10 @@ void G1Ex2();
 void G1Ex3();
 void printArray();
 void G1Ex4();
-int G1Ex5();
+int  G1Ex5();
 void G1Ex7();
+int G1Ex8();
+int G1Ex9();
 void G1Ex14();
 void escreve();
 int G1Ex15();
@@ -24,8 +26,8 @@ int main(){
     int tab[TAM1] = {1,3,7,5,2,10,9,7,7,1};
     int pares=0,impares=0, maiorValor=0, posMaiorValor=0;
     int tab1[TAM1] = {1,3,7,5,2,10,9,8,12,6};
-    int tab2[TAM] = {1,3,2,10,9,7,4};
-    int primMaior, segMaior;
+    int tab2[TAM] = {25,25,15,20,1,4,6,2};
+    int primMaior , segMaior;
     int mat1[L1][C1] = {{1,2}, 
                         {4,1}, 
                         {5,6}};
@@ -33,7 +35,6 @@ int main(){
     int B[L1][C1] = {{1,2}, 
                     {4,1}, 
                     {5,6}};                    
-    
     //G1Ex1();
     /*printf("Antes v1=%.2f\tv2=%.2f\tv3=%.2f\t\n",v1,v2,v3);
     G1Ex2(&v1,&v2,&v3);
@@ -42,10 +43,13 @@ int main(){
     /*G1Ex4(tab,TAM1,&pares,&impares,&maiorValor,&posMaiorValor);
     printf("Existem %d números pares, %d números ímpares. O maior número é o %d e está na posição %d.\n",pares,impares,maiorValor,posMaiorValor);*/
     //printf("Comuns: %d\n",G1Ex5(tab1,TAM1,tab2,TAM));
-    //G1Ex7(tab2,TAM,&primMaior, &segMaior);
+     G1Ex7(tab2,TAM,&primMaior, &segMaior);
+     printf("1º Maior:%d\t2º Maior:%d\n",primMaior,segMaior);
+    //printf("Posição: %d\n",G1Ex8(tab,TAM1));
     //printf("1º-%d\t2º-%d\n",primMaior,segMaior);
     //G1Ex14();
     //printf("%d\n",G1Ex15(L1,C1,mat1));
+    
 }
 
 void G1Ex1(){
@@ -139,18 +143,51 @@ int G1Ex5(int *tabA, int tamA, int *tabB, int tamB){
     return cont;
 }
 
-void G1Ex7(int *tab, int tam, int *prim, int *seg){//Não está bem feito
-    *prim = tab[0];
-    *seg = tab[0];
-     int aux;
-     printArray(tab,tam);
-    for(int i=0; i<tam; ++i){
-        if(tab[i] > *prim || *prim > *seg){
-            *prim = tab[i];
-            *seg = tab[i-1];
-        }
+void G1Ex7(int *tab, int tam, int *prim, int *seg){ 
+    int menor=tab[0];
+    printArray(tab,tam);
 
+    for(int i=0; i<tam; ++i){
+        if(tab[i] < menor){
+            *prim=tab[i];
+            *seg=tab[i];
+        }
     }
+    /*if(tab[0] > tab[1]){
+        *prim = tab[0];
+        *seg = tab[1];
+    }else{
+        *prim= tab[1];
+        *seg = tab[0];
+    }*/
+    for(int i=0; i<tam; ++i){
+        if(tab[i] > *prim){
+            *prim = tab[i];
+        }
+    }
+    for(int i =0; i<tam; ++i){
+        if(tab[i] > *seg && tab[i] < *prim){
+            *seg = tab[i];
+        }
+    }
+}
+
+int G1Ex8(int *tab, int dim){
+    int maiorSubida = tab[1] - tab[0], pos=0,j=1;
+    for(int i=0; i<dim; ++i){
+        j=i+1;
+           if((tab[j] - tab[i]) > maiorSubida){
+               printf("tab[%d] - tab[%d] : %d\n",j,i,tab[j] - tab[i]);
+               maiorSubida  = tab[j] - tab[i];
+               pos = j;
+           }
+           ++j;
+    }
+    return pos;
+}
+
+int G1Ex9(char *tel, char *c){
+
 }
 
 void G1Ex14(){

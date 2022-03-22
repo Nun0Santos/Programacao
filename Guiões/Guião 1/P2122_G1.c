@@ -17,6 +17,7 @@ int  G1Ex5();
 void G1Ex7();
 int G1Ex8();
 int G1Ex9();
+int G1Ex10();
 void G1Ex14();
 void escreve();
 int G1Ex15();
@@ -35,6 +36,7 @@ int main(){
     int B[L1][C1] = {{1,2}, 
                     {4,1}, 
                     {5,6}};                    
+    char frase[15] ={"Ola aando!"};
     //G1Ex1();
     /*printf("Antes v1=%.2f\tv2=%.2f\tv3=%.2f\t\n",v1,v2,v3);
     G1Ex2(&v1,&v2,&v3);
@@ -43,12 +45,13 @@ int main(){
     /*G1Ex4(tab,TAM1,&pares,&impares,&maiorValor,&posMaiorValor);
     printf("Existem %d números pares, %d números ímpares. O maior número é o %d e está na posição %d.\n",pares,impares,maiorValor,posMaiorValor);*/
     //printf("Comuns: %d\n",G1Ex5(tab1,TAM1,tab2,TAM));
-     G1Ex7(tab2,TAM,&primMaior, &segMaior);
-     printf("1º Maior:%d\t2º Maior:%d\n",primMaior,segMaior);
+    /*G1Ex7(tab2,TAM,&primMaior, &segMaior);
+    printf("1º Maior:%d\t2º Maior:%d\n",primMaior,segMaior);*/
     //printf("Posição: %d\n",G1Ex8(tab,TAM1));
     //printf("1º-%d\t2º-%d\n",primMaior,segMaior);
     //G1Ex14();
     //printf("%d\n",G1Ex15(L1,C1,mat1));
+    printf("%d\n",G1Ex10(frase));
     
 }
 
@@ -188,6 +191,29 @@ int G1Ex8(int *tab, int dim){
 
 int G1Ex9(char *tel, char *c){
 
+}
+
+int G1Ex10(char *frase){
+    int i=2,cont=0,j=0,x=0;
+    char frase2[15];
+    while(frase[j] != '\0'){
+        if(frase[j] == ' '){
+            ++j;
+            continue;
+        }
+        frase2[x] = frase[j];
+        ++j;++x;
+
+    }
+    printf("%s\n",frase2);
+
+    while(frase2[i] != '\0'){
+        if(frase2[i-2] == frase2[i-1] && frase2[i-1] == frase2[i]){
+            return 1;
+        }
+        ++i;
+    }
+    return 0;
 }
 
 void G1Ex14(){

@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #define TAM 8
+#define TAM2 8
 #define TAM1 10
 
 #define L1 3
@@ -18,6 +19,7 @@ void G1Ex7();
 int G1Ex8();
 int G1Ex9();
 int G1Ex10();
+int G1Ex11();
 void G1Ex14();
 void escreve();
 int G1Ex15();
@@ -26,7 +28,7 @@ int main(){
     float v1 = 2.3, v2 = 5.1, v3 = 7.9;
     int tab[TAM1] = {1,3,7,5,2,10,9,7,7,1};
     int pares=0,impares=0, maiorValor=0, posMaiorValor=0;
-    int tab1[TAM1] = {1,3,7,5,2,10,9,8,12,6};
+    int tab1[TAM1] = {1,3,7,5,20,10,9,8,12,6};
     int tab2[TAM] = {25,25,15,20,1,4,6,2};
     int primMaior , segMaior;
     int mat1[L1][C1] = {{1,2}, 
@@ -37,6 +39,8 @@ int main(){
                     {4,1}, 
                     {5,6}};                    
     char frase[15] ={"Ola aando!"};
+    int t1[TAM] = {25,25,15,20,1,4,6,2};
+    int t2[TAM2] = {25,25,15,2,1,4,6,2};
     //G1Ex1();
     /*printf("Antes v1=%.2f\tv2=%.2f\tv3=%.2f\t\n",v1,v2,v3);
     G1Ex2(&v1,&v2,&v3);
@@ -51,7 +55,8 @@ int main(){
     //printf("1º-%d\t2º-%d\n",primMaior,segMaior);
     //G1Ex14();
     //printf("%d\n",G1Ex15(L1,C1,mat1));
-    printf("%d\n",G1Ex10(frase));
+    //printf("%d\n",G1Ex10(frase));
+    printf("%d\n",G1Ex11(t1,TAM,t2,TAM2));
     
 }
 
@@ -216,6 +221,23 @@ int G1Ex10(char *frase){
     return 0;
 }
 
+int G1Ex11(int a1[], int dim1, int a2[], int dim2){ // Nao esta bem feito
+    if(dim1 != dim2){
+        return 0;
+    }else{
+        for(int i = 0; i < dim1; ++i){
+            for(int j = 0; j < dim2; ++j){
+                if(a1[i] == a2[j]){
+                   
+                    if(i == dim1-1){
+                        return 1;
+                    }
+                }
+            }
+        }
+        return 0;
+    }
+}
 void G1Ex14(){
     int mat1[L1][C1] = {{1,2}, {3,4}, {5,6}};
     int mat2[L2][C2] = {{1,2,3}, {4,5,6}, {7,8,9}, {10,11,12}};

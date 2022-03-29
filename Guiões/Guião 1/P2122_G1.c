@@ -24,6 +24,7 @@ void G1Ex14();
 void escreve();
 int G1Ex15();
 
+
 int main(){
     float v1 = 2.3, v2 = 5.1, v3 = 7.9;
     int tab[TAM1] = {1,3,7,5,2,10,9,7,7,1};

@@ -9,10 +9,20 @@ void printPonto(ponto2D a){
 
 // alinea c)
 void initPonto(ponto2D* p){
-    // completar a função
+    printf("x: \n");
+    scanf("%d",&p->x);
+    
+    printf("y: \n");
+    scanf("%d",&p->y);
 }
 
-// alinea d)
+//alinea d)
 void movePonto(ponto2D* p, int dx, int dy){
-    // completar a função
+    p->x += dx;
+    p->y += dy;
 }
+
+//alinea e)
+int G2Ex1e(ponto2D a, ponto2D b ,ponto2D c){
+    
+};

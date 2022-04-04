@@ -1,7 +1,4 @@
 
-#ifndef PONTO_H
-#define PONTO_H
-
 // alinea a)
 typedef struct ponto ponto2D;
 struct ponto{
@@ -9,10 +6,9 @@ struct ponto{
 };
 
 void printPonto(ponto2D a);
-
 void initPonto(ponto2D* p);
-
 void movePonto(ponto2D* p, int dx, int dy);
+int G2Ex1e(ponto2D a, ponto2D b ,ponto2D c);
 
-#endif /* PONTO_H */
+
 

@@ -17,7 +17,7 @@ int main(){
     //printf("Area = %d\n",G2Ex2d(r1));
 
     p1.x = 5; p1.y=2;
-    //printf("%d\n",G2Ex2e(r1,p1));
+    printf("%d\n",G2Ex2e(r1,p1));
     printf("Antes da funcao\n");
     G2Ex2b(r1);
 

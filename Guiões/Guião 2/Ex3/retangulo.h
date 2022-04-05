@@ -1,4 +1,4 @@
-#include "../Ex1/ponto.h"
+#include "ponto.h"
 
 typedef struct retangulo retangulo;
 struct retangulo{

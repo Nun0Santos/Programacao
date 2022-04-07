@@ -52,8 +52,10 @@ int G2Ex3d(retangulo a[], int *total){
     }
 }
 
-int G2Ex3e(retangulo a[], int *total, int limite){
+int G2Ex3e(retangulo a[], int *total, int limite){//Ha um problema na parte do eliminar
+    int cont=0;
     int area[*total];
+
     if(*total == 0){
         printf("Não existe retângulos a eliminar\n");
         return 0;
@@ -66,11 +68,11 @@ int G2Ex3e(retangulo a[], int *total, int limite){
 
     for(int i=0; i<*total; ++i){
         if(area[i] < limite){
-            printf("Retângulo eliminado : [%d]\n",i);
+            printf("Retângulo eliminado [%d] com area = [%d]\n",i,area[i]);
             a[i] = a[*total-1];
             --(*total);
-            return 1;
-        };
+            ++cont;
+        } 
     }
-    
+    return cont;
 }

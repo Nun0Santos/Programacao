@@ -16,7 +16,7 @@ int main(){
     puts("\n");
     //printf("%d\n",G2Ex3d(r,&total));
     
-    printf("%d\n",G2Ex3e(r,&total,20));
+    printf("Eliminados = %d\n",G2Ex3e(r,&total,20));
     printf("=======================================\n");
     printf("\nDepois de eliminar :\n");
 

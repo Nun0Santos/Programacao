@@ -4,20 +4,20 @@ agenda* G2Ex6c(agenda *tab, int *n){
     agenda *p;
     agenda *b;
     
+    char nome[25];
+    int numero;
     printf("Nome do contacto a adicionar : "); 
-    fgets(p->nome,sizeof(agenda),stdin);  
+    fgets(nome, 24,stdin);  
      
     printf("Número do contacto : ");
-    scanf("%d",&p->numero);
-
-    printf("nome:%s\tnumero:%d\n",p->nome,p->numero);
-
-    p = realloc(tab,sizeof(agenda) * (*n+1));
+    scanf("%d",&numero);
+    
+    p = realloc(tab, sizeof(agenda) * (*n+1));
     if(p != NULL){
         tab = p;
-        printf("nome:%s\tnumero:%d\n",p->nome,p->numero);
-        tab[*n] = *p;
-        ++(*n);  
+        strcpy(tab[*n].nome, nome);
+        tab[*n].numero = numero;
+        ++(*n);
     }
     return tab;
 };

@@ -3,7 +3,7 @@
 #include <string.h>
 
 
-int main(int argc, char *argv[]){
+/*int main(int argc, char *argv[]){
   float media=0;
   char soma;
   
@@ -15,4 +15,4 @@ int main(int argc, char *argv[]){
   printf("%d\v",soma);
 
 
-}
+}*/

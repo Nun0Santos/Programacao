@@ -23,6 +23,7 @@ int G1Ex11();
 void G1Ex14();
 void escreve();
 int G1Ex15();
+void G1Ex18();
 
 
 int main(){
@@ -42,6 +43,17 @@ int main(){
     char frase[15] ={"Ola aando!"};
     int t1[TAM] = {25,25,15,20,1,4,6,2};
     int t2[TAM2] = {25,25,15,2,1,4,6,2};
+
+    float m1[3][2] = {{1.0, 4.5},{-2.5, 8.9},{0.3, 1.4}};
+    float m2[2][6] = {{1.0, 1.6, 4.2, 1.4, 0.5, -3.4},{2.5, 8.1, 0.9, -0.1, 0.8, 3.5}};
+    int min1=0, max1=0, min2=0, max2=0;
+
+    G1Ex18(2, 3, m1, &min1, &max1);
+    G1Ex18(2, 6, m2, &min2, &max2);
+
+
+    printf("Matriz m1: (%d, %d)\n", min1, max1);
+    printf("Matriz m2: (%d, %d)\n", min2, max2);
     //G1Ex1();
     /*printf("Antes v1=%.2f\tv2=%.2f\tv3=%.2f\t\n",v1,v2,v3);
     G1Ex2(&v1,&v2,&v3);
@@ -57,7 +69,7 @@ int main(){
     //G1Ex14();
     //printf("%d\n",G1Ex15(L1,C1,mat1));
     //printf("%d\n",G1Ex10(frase));
-    printf("%d\n",G1Ex11(t1,TAM,t2,TAM2));
+    //printf("%d\n",G1Ex11(t1,TAM,t2,TAM2));
     
 }
 
@@ -266,4 +278,20 @@ int G1Ex15(int nLin, int nCol, int mat[][nCol]){
         }
     }
     return 1;
+}
+
+void G1Ex18(int nLin, int nCol, float m[][nCol], int* min, int *max){
+    // Escrever a média dos valores armazenados em cada uma das colunas da matriz
+    float soma=0,media=0;
+    for(int i=0; i<nLin; ++i){
+        for(int j=0; j< nCol; ++j){
+            if(j< nCol){
+               soma += m[i][j];
+            }
+        }
+    }
+    media = soma/nLin;
+    printf("%f\n",media);
+
+
 }

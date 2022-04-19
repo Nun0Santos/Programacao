@@ -8,8 +8,8 @@ void mostra();
 
 int main(){
     int dimA=6,dimB=9, *tabA = NULL, *tabB = NULL;
-    const int a[6] = {1, 3, 2, 6, 5, 4};
-    const int b[9] = {9, 5, 3, 3, 1, 4, 8, 7, 23};
+    const int a[5] = {1, 1, 1, 2, 2};
+    const int b[5] = {2, 1, 2, 1, 1};
     
     tabA = malloc(sizeof(int) * dimA);
     if(tabA == NULL){
@@ -42,7 +42,9 @@ int comuns(const int *vA, int tamA, const int *vB, int tamB){
                     }
                 }
             } 
+            
         }    
     }
+   
     return count;
 }

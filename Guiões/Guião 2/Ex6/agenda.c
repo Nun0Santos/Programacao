@@ -2,10 +2,10 @@
 
 agenda* G2Ex6c(agenda *tab, int *n){
     agenda *p;
-    agenda *b;
-    
+   
     char nome[25];
     int numero;
+    
     printf("Nome do contacto a adicionar : "); 
     fgets(nome, 24,stdin);  
      

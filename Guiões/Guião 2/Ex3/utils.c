@@ -45,34 +45,27 @@ int G2Ex3d(retangulo a[], int *total){
     for(int i=0; i<*total; ++i){
         if(area[i]==menorArea){
             printf("Retângulo eliminado : [%d]\n",i);
-            a[i] = a[*total-1];
+            //a[i] = a[*total-1];
             --(*total);
             return 1;
         };
     }
 }
 
-int G2Ex3e(retangulo a[], int *total, int limite){//Ha um problema na parte do eliminar
-    int cont=0;
-    int area[*total];
+void G2Ex3e(retangulo a[], int *total, int limite){//Ha um problema na parte do eliminar
+    int le,esc=0;
+  
 
     if(*total == 0){
         printf("Não existe retângulos a eliminar\n");
-        return 0;
     }
+    for(le = 0; le<*total; ++le){
+        if(G2Ex2d(a[le]) > limite){
+            printf("Retângulo [%d] com area = [%d]\n",le,G2Ex2d(a[le]));
+            a[esc] = a[le];
+            ++esc;
+        }
+    }
+    *total = esc;
 
-     for(int i=0; i<*total; ++i){ //calcula area 
-        area[i] = G2Ex2d(a[i]);
-        printf("Area do retângulo [%d] = %d\n",i,area[i]);
-    }
-
-    for(int i=0; i<*total; ++i){
-        if(area[i] < limite){
-            printf("Retângulo eliminado [%d] com area = [%d]\n",i,area[i]);
-            a[i] = a[*total-1];
-            --(*total);
-            ++cont;
-        } 
-    }
-    return cont;
 }

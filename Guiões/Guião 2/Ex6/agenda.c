@@ -3,15 +3,17 @@
 agenda* G2Ex6c(agenda *tab, int *n){
     agenda *p;
    
-    char nome[25];
+    char nome[250];
     int numero;
+    char numStr[100];
     
     printf("Nome do contacto a adicionar : "); 
     fgets(nome, 24,stdin);  
      
     printf("Número do contacto : ");
-    scanf("%d",&numero);
-    
+    fgets(numStr,sizeof(numStr),stdin);
+    numero = atoi(numStr);
+
     p = realloc(tab, sizeof(agenda) * (*n+1));
     if(p != NULL){
         tab = p;
@@ -29,7 +31,7 @@ void G2Ex6d(agenda *tab, int nContactos){
     }
 }
 
-int G2Ex6e(agenda *tab, char nome, int nContactos){
+/*int G2Ex6e(agenda *tab, char nome, int nContactos){
     if (nContactos == 0){
         printf("Não há contactos na Agenda\n");
     }
@@ -40,4 +42,4 @@ int G2Ex6e(agenda *tab, char nome, int nContactos){
         }
 
     }
-}
+}*/

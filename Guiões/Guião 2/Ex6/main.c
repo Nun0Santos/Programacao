@@ -12,7 +12,7 @@ for(int i=0; i<3; ++i){
 G2Ex6d(contactos,total);
 
 //G2Ex6e(contactos,"Nuno",total);
-
+//Error double free
 
 if(contactos != NULL){
     free(contactos);

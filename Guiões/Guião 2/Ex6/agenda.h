@@ -10,5 +10,6 @@ struct agenda{
 
 agenda* G2Ex6c(agenda *tab, int *n);
 void G2Ex6d(agenda *tab, int nContactos);
-int G2Ex6e(agenda *tab, char nome, int nContactos);
-
+int G2Ex6e(agenda *tab, char *nome, int nContactos);
+int G2Ex6f(agenda *tab, char *nome, int nContactos);
+agenda* G2Ex6g(agenda *tab, char *nome, int *nContactos);

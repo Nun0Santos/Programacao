@@ -12,6 +12,8 @@ void G3Ex9(char *nameFile){
     FILE *fp;
     int c,nAlunos,nProvas;
     char le[255];
+    int pesosProvas[5],i=0;
+    int a;
 
     fp = fopen(nameFile,"rt");
     if(fp == NULL)
@@ -28,6 +30,15 @@ void G3Ex9(char *nameFile){
 
     fscanf(fp,"%*[^:] : %d",&nProvas);
     printf("nProvas: %d\n",nProvas);
+
+    
+    fscanf(fp,"Peso das provas: %d %d %d %d %d",&pesosProvas[i],&pesosProvas[i+1],&pesosProvas[i+2],&pesosProvas[i+3],&pesosProvas[i+4]);
+        
+    for(int i=0; i<5; ++i)
+        printf("Pesos: %d\n",pesosProvas[i]);
+
+    
+    
 
 
 

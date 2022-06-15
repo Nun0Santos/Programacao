@@ -1,22 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-
-typedef struct tipoA cliente, *pCliente; 
-typedef struct tipoB acesso, *pAcesso; 
-
-typedef struct {int h, m;} hora;
-
-struct tipoA{
-    int id;         // Identificador único
-    int contador;   // Número de utilizações nesse dia
-    pAcesso lista;  // Ponteiro para a lista de acessos
-    pCliente prox;  // Ponteiro para o próximo cliente
-};
-      
-struct tipoB{
-    hora in, out;   // Horas de entrada e saída
-    pAcesso prox;
-};
+#include "structs.h"
 
 void libertaTudo(pCliente p){
     pCliente auxC;
@@ -87,13 +71,64 @@ void mostraTudo(pCliente p){
     }   
 }
 
+void G4Ex13a(cliente *c);
+void G4EX13b(cliente *c); //acabar esta
+int totalMinutos(pAcesso a);
+pCliente acessoParque(pCliente lista, int id, hora x); // importante para o exame
 int main(){
     
     pCliente lista = criaExemploED();
     
     mostraTudo(lista);
-    // Chamar as funções aqui
-    
+    G4Ex13a(lista);
+    G4EX13b(lista);
+
     libertaTudo(lista);  
     return 0;
+}
+
+void G4Ex13a(cliente *c){
+    pAcesso aux;
+    int cont = 0;
+
+    while(c != NULL){
+        aux = c-> lista;
+        while(aux != NULL){
+            if(aux->out.h == -1)
+                ++cont;
+            aux = aux->prox;
+        }
+    c = c->prox;
+    }   
+    printf("\nEstão %d clientes dentro do parque\n",cont);
+}
+
+void G4EX13b(cliente *c){
+    pAcesso aux;
+    int cont = 0,minutos=0,somatorio=0;
+    int *id;
+    while(c != NULL){
+        id = c->id;
+        aux = c-> lista;
+        while(aux != NULL){
+            if(aux->out.h != -1){
+                if(c->id == id){
+
+                }
+                printf("soamtorio : %d\n",somatorio); 
+            }               
+            aux = aux->prox;
+        }
+        c = c->prox;
+    }   
+    //printf("\nCliente com mais minutos: %d\n\n",c->id);
+}
+int totalMinutos(pAcesso a){
+    int totalMinutos=0;
+    return totalMinutos = (a->out.h*60 + a->out.m) - (a->in.h*60 + a->in.m);
+}
+
+pCliente acessoParque(pCliente lista, int id, hora x){
+
+    
 }

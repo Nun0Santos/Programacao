@@ -1,16 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+#include "concorrente.h"
 #define N 4
-
-typedef struct concorrente no, *pno;
-
-struct concorrente{
-	char nome[200];		/* nome do concorrente */
-	int id;				/* n.� de aluno: identificador �nico */
-	float analise;		/* n�vel de �lcool no sangue */
-	pno prox;
-};
 
 
 // Funcao para criar a estrutura dinamica com base na informacao do ficheiro de texto
@@ -51,7 +42,7 @@ int main()
 	// Declaracao do array de ponteiros
 	pno tab[N] = {NULL};
 
-
+ 
 	// Criar ED
 	cria_listas(tab, "dados_15.txt");
 

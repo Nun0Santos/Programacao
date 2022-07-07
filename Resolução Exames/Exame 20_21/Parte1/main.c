@@ -90,20 +90,47 @@ int p1Ex1(pCriador p, int gaiola){
 }
 
 pCriador retiraVendidas(pCriador p){
-    pAve atual,ant = NULL;
+    pCriador atualCriador = p;
+    pCriador ultimoCriador = NULL;
+    pCriador tmpCriador;
+    pAve atualAve = NULL;
+    pAve ultimoAve;
+    pAve tmpAve;
     
-    while (p != NULL){
-     
-        atual = p->lista;
-        while(atual != NULL){
-            if(atual->venda.d != 0){// Ave foi vendida
-                ant = atual;
-                free(ant);
-                --p->contador;
+    while (atualCriador != NULL){
+        ultimoAve = NULL;
+        atualAve = atualCriador->lista;
+        while(atualAve != NULL){
+            if(atualAve->venda.d != 0){// Ave foi vendida
+                if(!ultimoAve)
+                    atualCriador->lista = atualAve->prox;
+                else    
+                    ultimoAve->prox = atualAve->prox;
+                tmpAve = atualAve;
+                atualAve = atualAve->prox;
+                free(tmpAve);
+                atualCriador->contador--;
             }
-            atual = atual->prox;
+            else{
+                ultimoAve = atualAve;
+                atualAve = atualAve->prox;
+            }
         }
+        if (atualCriador->contador == 0)
+		{
+				if (!ultimoCriador)
+					p = ultimoCriador->prox;
+				else
+					ultimoCriador->prox = atualCriador->prox;
+				tmpCriador = atualCriador;
+				atualCriador = atualCriador->prox;
+				free(tmpCriador);
+		}
+		else
+		{
+			ultimoCriador = atualCriador;
+			atualCriador = atualCriador->prox;
+		}
     }
-    p = p->prox;
     return p;
 }

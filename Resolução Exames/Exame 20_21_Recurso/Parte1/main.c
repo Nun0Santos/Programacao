@@ -6,6 +6,7 @@
 pDivisao criaLista();
 void mostraTudo(pDivisao p);
 float P1Ex1(pDivisao p, int sensor);
+pDivisao adiciona(pDivisao lista, char *div, int idS, int h, int m, double val);
 
 int main(){
     pDivisao p = criaLista();
@@ -56,6 +57,7 @@ pDivisao criaLista(){ //by Kylix
     auxDiv->nr_leituras = 3;
     return (pDiv);
 }
+
 void mostraTudo(pDivisao p){
     pLeitura auxA;
     
@@ -93,4 +95,8 @@ float P1Ex1(pDivisao p, int sensor){
             return (float)valores[i];
     }
     return -1.0;
+}
+
+pDivisao adiciona(pDivisao lista, char *div, int idS, int h, int m, double val){
+    
 }

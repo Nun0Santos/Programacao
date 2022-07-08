@@ -2,23 +2,23 @@
 #include <stdbool.h>
 #include "structs.h"
 
-void guardaDadosCC();
-void guardaDadosDono();
+void guardaDadosCC(cc *carta, int tam);
+void guardaDadosDono(dono *d, int tam);
 void ex3Parte2(char *filename1, char *filename2);
 
 int main(){
-    cc cartas[] =            { {"Nuno",123456789,334455},
-                               {"Pedro",789456123,123456},
-                               {"Jonnas",456321789,654321}
-                             };
+    cc cartas[] ={ 
+                  {"Nuno",123456789,334455},
+                  {"Pedro",789456123,123456},
+                  {"Jonnas",456321789,654321}
+                 };
 
-    dono proprietarios[] =   { {"Nuno",123456789,"25-QX-77"},
-                               {"Pedro",789456123,"10-SF-20"},
-                               {"Jonnas",456321789,"30-PE-45"},
-                               {"Kylix",562987456,"45-OA-98"}
-                             };
-    
-    guardaDadosCC(cartas,3);
+    dono proprietarios[] = { 
+                             {"Nuno",123456789,"25-QX-77"},
+                             {"Pedro",789456123,"10-SF-20"},
+                             {"Jonnas",456321789,"30-PE-45"},
+                             {"Kylix",562987456,"45-OA-98"}
+                            };
     guardaDadosDono(proprietarios,4);
     ex3Parte2("infoDonos.dat","infoCartas.dat");
   

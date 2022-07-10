@@ -2,6 +2,12 @@
 #include <stdlib.h>
 #include "structs.h"
 
+void G4Ex13a(cliente *c);
+void G4EX13b(cliente *c); //acabar esta
+int totalMinutos(pAcesso a);
+pCliente G4Ex13c(pCliente c);
+pCliente acessoParque(pCliente lista, int id, hora x); // importante para o exame
+
 void libertaTudo(pCliente p){
     pCliente auxC;
     pAcesso auxA;
@@ -71,17 +77,18 @@ void mostraTudo(pCliente p){
     }   
 }
 
-void G4Ex13a(cliente *c);
-void G4EX13b(cliente *c); //acabar esta
-int totalMinutos(pAcesso a);
-pCliente acessoParque(pCliente lista, int id, hora x); // importante para o exame
 int main(){
     
     pCliente lista = criaExemploED();
     
     mostraTudo(lista);
     G4Ex13a(lista);
-    G4EX13b(lista);
+    //G4EX13b(lista);
+
+    lista = G4Ex13c(lista);
+    printf("Depois:\n\n");
+    mostraTudo(lista);
+    G4Ex13a(lista);
 
     libertaTudo(lista);  
     return 0;
@@ -108,11 +115,11 @@ void G4EX13b(cliente *c){
     int cont = 0,minutos=0,somatorio=0;
     int *id;
     while(c != NULL){
-        id = c->id;
+        *id = c->id;
         aux = c-> lista;
         while(aux != NULL){
             if(aux->out.h != -1){
-                if(c->id == id){
+                if(c->id == *id){
 
                 }
                 printf("soamtorio : %d\n",somatorio); 
@@ -128,6 +135,51 @@ int totalMinutos(pAcesso a){
     return totalMinutos = (a->out.h*60 + a->out.m) - (a->in.h*60 + a->in.m);
 }
 
+pCliente G4Ex13c(pCliente c){
+
+    pCliente atualCliente = c;
+    pCliente ultimoCliente = NULL;
+    pCliente tempCliente;
+    pAcesso acessoAtual = NULL;
+    pAcesso ultimoAcesso;
+    pAcesso tempAcesso;
+
+    while(atualCliente != NULL){
+        ultimoAcesso = NULL;
+        acessoAtual=atualCliente->lista;
+        while (acessoAtual != NULL){
+            if(acessoAtual->out.h== -1){ //Condicao para eliminar
+                if(!ultimoAcesso)
+                    atualCliente->lista = acessoAtual->prox;
+                else    
+                    ultimoAcesso->prox = acessoAtual->prox;
+                
+                tempAcesso = acessoAtual;
+                acessoAtual = acessoAtual->prox;
+                free(tempAcesso);
+                atualCliente->contador--;
+            }
+            else{
+                ultimoAcesso = acessoAtual;
+                acessoAtual = acessoAtual->prox;
+            }
+        }
+        if(atualCliente->contador == 0){
+            if(!ultimoCliente)
+                c = ultimoCliente->prox;
+            else    
+                ultimoCliente->prox=atualCliente->prox;
+            tempCliente = atualCliente;
+            atualCliente = atualCliente->prox;
+            free(tempCliente);
+        }
+        else{
+            ultimoCliente = atualCliente;
+            atualCliente=atualCliente->prox;
+        }
+    }
+    return c;
+}
 pCliente acessoParque(pCliente lista, int id, hora x){
 
     

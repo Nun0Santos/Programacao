@@ -3,7 +3,7 @@
 #include "concorrente.h"
 #define N 4
 
-void G4Ex15a(pno p);
+void G4Ex15a(pno *p);
 // Funcao para criar a estrutura dinamica com base na informacao do ficheiro de texto
 void cria_listas(pno tab[], char *n1)
 {
@@ -47,15 +47,19 @@ int main()
 	cria_listas(tab, "dados_15.txt");
 
 	// Continuar a partir daqui ...
-	G4Ex15a(*tab);
+	G4Ex15a(tab);
 
 	return 0;
 }
 
-void G4Ex15a(pno p){
+void G4Ex15a(pno *p){
+	pno aux = *p;
 
-	while(p != NULL){
-		printf("%s\n",p->nome);
-		p = p->prox;		
+	for (int i = 0; i<N; ++i) {
+		while(aux != NULL){
+			printf("Corrida %i: %s\n",i, aux->nome);
+			aux = aux->prox;		
+		}
+		aux = *(p + i); // ou aux = p[i];
 	}
 }

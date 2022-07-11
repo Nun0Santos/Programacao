@@ -3,15 +3,11 @@
 #include "concorrente.h"
 #define N 4
 
-<<<<<<< Updated upstream
-void G4Ex15a(pno *p);
-=======
 void G4Ex1a(pno p[],int tam);
 pno addCorrida(pno p[],int *tam);
 pno obtemInfo();
 pno addConcorrente(pno p[]);
 pno eliminaConcorrente(pno p[]);
->>>>>>> Stashed changes
 // Funcao para criar a estrutura dinamica com base na informacao do ficheiro de texto
 void cria_listas(pno tab[], char *n1)
 {
@@ -56,9 +52,6 @@ int main()
 	cria_listas(tab, "dados_15.txt");
 
 	// Continuar a partir daqui ...
-<<<<<<< Updated upstream
-	G4Ex15a(tab);
-=======
 	G4Ex1a(tab,tam);
 
 	tab[N] = addConcorrente(tab);
@@ -69,7 +62,6 @@ int main()
 	printf("Depois de eliminar :\n");
 	G4Ex1a(tab,tam);
 
->>>>>>> Stashed changes
 
 	return 0;
 }

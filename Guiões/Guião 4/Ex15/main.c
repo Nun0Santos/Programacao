@@ -3,7 +3,15 @@
 #include "concorrente.h"
 #define N 4
 
+<<<<<<< Updated upstream
 void G4Ex15a(pno *p);
+=======
+void G4Ex1a(pno p[],int tam);
+pno addCorrida(pno p[],int *tam);
+pno obtemInfo();
+pno addConcorrente(pno p[]);
+pno eliminaConcorrente(pno p[]);
+>>>>>>> Stashed changes
 // Funcao para criar a estrutura dinamica com base na informacao do ficheiro de texto
 void cria_listas(pno tab[], char *n1)
 {
@@ -39,27 +47,87 @@ void cria_listas(pno tab[], char *n1)
 
 int main()
 {
+		
 	// Declaracao do array de ponteiros
 	pno tab[N] = {NULL};
-
+	int tam = 4;
  
 	// Criar ED
 	cria_listas(tab, "dados_15.txt");
 
 	// Continuar a partir daqui ...
+<<<<<<< Updated upstream
 	G4Ex15a(tab);
+=======
+	G4Ex1a(tab,tam);
+
+	tab[N] = addConcorrente(tab);
+	printf("Depois de adicionar:\n");
+	G4Ex1a(tab,tam);
+
+	tab[N] = eliminaConcorrente(tab);
+	printf("Depois de eliminar :\n");
+	G4Ex1a(tab,tam);
+
+>>>>>>> Stashed changes
 
 	return 0;
 }
 
-void G4Ex15a(pno *p){
-	pno aux = *p;
-
-	for (int i = 0; i<N; ++i) {
-		while(aux != NULL){
-			printf("Corrida %i: %s\n",i, aux->nome);
-			aux = aux->prox;		
+void G4Ex1a(pno p[],int tam){//array de listas
+	pno aux;
+	for(int i=0; i<tam; ++i){
+		aux =p[i];
+		while( aux != NULL){
+			printf("Corrida [%d]\tNome:%s\tId:%d\tAlcool:%.2f\n",i,aux->nome,aux->id,aux->analise);
+			aux = aux->prox;
 		}
-		aux = *(p + i); // ou aux = p[i];
+		putchar('\n');
 	}
+	
+}
+
+pno addCorrida(pno p[], int *tam){
+	pno *novo;
+
+	novo = realloc(p,sizeof(int) * (*tam+1));
+	if(novo != NULL){
+		p = novo;	
+		(*tam)++;
+	}
+	return *p;
+}
+
+pno addConcorrente(pno p[]){
+	pno aux = *p;
+	pno novo;
+		while( aux->prox != NULL){
+			aux = aux->prox;
+		}
+		novo = malloc(sizeof(no));
+		aux->prox = novo;
+		novo->id = 144;
+		novo->prox = NULL;
+		return *p;
+
+}
+
+pno eliminaConcorrente(pno p[]){
+	pno temp;
+	pno aux = *p;
+	pno anterior = NULL;
+
+	while( aux != NULL){
+		if(aux->id == 123){
+			temp = aux->prox;
+			free(aux);
+			aux = temp;
+			anterior->prox = aux;
+		}
+		anterior = aux;
+		aux = aux->prox;
+	}	
+	temp = aux;
+	return *p;
+
 }

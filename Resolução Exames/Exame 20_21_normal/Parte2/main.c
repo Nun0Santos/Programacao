@@ -20,6 +20,7 @@ int main(){
                              {"Kylix",562987456,"45-OA-98"}
                             };
     guardaDadosDono(proprietarios,4);
+    guardaDadosCC(cartas, 3);
     ex3Parte2("infoDonos.dat","infoCartas.dat");
   
 };
@@ -33,7 +34,7 @@ void guardaDadosCC(cc *carta, int tam){
         perror("[ERRO] ao tentar abrir o ficheiro para escrita : ");
         return;
     }
-    fwrite(&tam,sizeof(int),1,f);//Mete o numero de estruturas no inicio
+    //fwrite(&tam,sizeof(int),1,f);//Mete o numero de estruturas no inicio
     for(int i=0; i<tam; ++i){
         res+=fwrite((carta+i), sizeof(cc),1,f);
     }
@@ -50,7 +51,7 @@ void guardaDadosDono(dono *d, int tam){
         perror("[ERRO] ao tentar abrir o ficheiro para escrita : ");
         return;
     }
-    fwrite(&tam,sizeof(int),1,f);//Mete o numero de estruturas no inicio
+    //fwrite(&tam,sizeof(int),1,f);//Mete o numero de estruturas no inicio
     for(int i=0; i<tam; ++i){
         res+=fwrite((d+i), sizeof(dono),1,f);
     }
@@ -60,32 +61,27 @@ void guardaDadosDono(dono *d, int tam){
 
 void ex3Parte2(char *filename1, char *filename2){
     FILE *f,*p,*fp;
-    cc cartas[3];
-    dono proprietarios[4];
+    cc cartas;
+    dono proprietarios;
     bool valid;
-    int tmp;
-    int elementsDono,elementsCC;
+;
     f = fopen(filename1,"rb");//donos
     p = fopen(filename2,"rb");//cartas
-
     fp = fopen("resumo.txt","wt");
 
-    fread(&elementsDono,sizeof(int),1,f);
-    fread(&elementsCC,sizeof(int),1,p);
-
-    fread(proprietarios,sizeof(dono),elementsDono,f);
-    fread(cartas,sizeof(cc),elementsCC,p);
-
-    for(int i = 0; i<elementsDono; ++i){
-        valid = false;
-        for(int j = 0; j<elementsCC; ++j){
-            if(cartas[j].nif == proprietarios[i].nif){
-                fprintf(fp,"%s,\t%d,\t%d\n",proprietarios[i].nome,proprietarios[i].nif,cartas[j].id);
+    while( fread(&proprietarios,sizeof(dono),1,f) == 1){
+        while( fread(&cartas,sizeof(cc),1,p) == 1){
+            valid = false;
+            if(proprietarios.nif == cartas.nif){
+                fprintf(fp,"%s,\t%d,\t%d\n",proprietarios.nome,proprietarios.nif,cartas.id);
                 valid = true;
+                break;
             }
         }
         if (!valid)
-            fprintf(fp,"%s,\t%d,\t%s\n",proprietarios[i].nome,proprietarios[i].nif,"Indisponivel");
+            fprintf(fp,"%s,\t%d,\t%s\n",proprietarios.nome,proprietarios.nif,"Indisponivel");
+        
+        rewind(p);
     }
     fclose(f);
     fclose(p);

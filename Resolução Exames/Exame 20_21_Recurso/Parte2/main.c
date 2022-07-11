@@ -4,6 +4,8 @@
 
 void guardaDadosCC(cc *carta, int tam);
 void guardaDadosVenda(venda *v, int tam);
+void printFile(char *nameFile);
+void printFileCC(char *nomeFicheiro);
 void P2Ex3(char *fileName1, char *fileName2, char *fileName3);
 
 int main(){
@@ -22,8 +24,10 @@ int main(){
 
     guardaDadosCC(cartas,3);
     guardaDadosVenda(vendas,4);
+    //printFile("infoVendas.dat");
     P2Ex3("infoCartas.txt","infoVendas.dat","resumo.dat");
-
+    printf("\nFicheiro resumo: \n");
+    printFileCC("resumo.dat");
 };
 
 void  guardaDadosCC(cc *carta, int tam){
@@ -35,11 +39,10 @@ void  guardaDadosCC(cc *carta, int tam){
         perror("[ERRO] ao tentar abrir o ficheiro para escrita : ");
         return;
     }
-    fprintf(f,"%d\n",tam);//Mete o numero de estruturas no inicio
     for(int i=0; i<tam; ++i){
         res += fprintf(f,"NIF: %d ; ID: %d\n",carta[i].nif,carta[i].id);
     }
-    printf("Nr de elementos escritos: %d\n",res);
+    //printf("Nr de elementos escritos: %d\n",res);
     fclose(f);    
 }
 
@@ -52,36 +55,76 @@ void guardaDadosVenda(venda *v, int tam){
         perror("[ERRO] ao tentar abrir o ficheiro para escrita : ");
         return;
     }
-    //fwrite(&tam,sizeof(int),1,f);//Mete o numero de estruturas no inicio
     for(int i=0; i<tam; ++i){
-        res += fwrite((v+1), sizeof(venda),1,f);
+        res += fwrite((v+i), sizeof(venda),1,f);
     }
-    printf("Nr de elementos escritos: %d\n",res);
+   //printf("Nr de elementos escritos: %d\n",res);
+    fclose(f);
+}
+void printFile(char *nomeFicheiro) {
+    FILE *f;
+    struct venda a;
+    
+    f = fopen(nomeFicheiro, "rb");
+    if (f == NULL)
+    {
+        printf("ERRO no acesso ao ficheiro\n");
+        return;
+    }
+
+    while (fread(&a, sizeof(struct venda), 1, f) == 1)
+        printf("%d/%d ; NIF: %d ; MAT: %s\n", a.data.dia, a.data.mes, a.nif, a.mat);
+    
     fclose(f);
 }
 
 void P2Ex3(char *fileName1, char *fileName2, char *fileName3){ //cartas/vendas/resumo
     FILE *f,*p,*fp;
-    cc cartas[3];
-    venda vendas[4];
+    cc cartas;
+    venda vendas;
     int count =0;
+    int nifCartas, idCartas;
+    int a;
+    a = -1;
 
-    f = fopen(fileName1,"rt");
-    p = fopen(fileName2,"rb");
-    fp = fopen(fileName3,"wb");
+    f = fopen(fileName1,"rt"); //infoCartas
+    p = fopen(fileName2,"rb"); //infoVendas
+    fp = fopen(fileName3,"wb");//resumo
 
-    while(fread(vendas, sizeof(venda),1,p) == 1){
-        while(fread(cartas, sizeof(cc),1,f) == 1){
-            printf("%d\t%d\n",vendas->nif,cartas->nif);
-            if(vendas->nif == cartas->nif){
+    while(fscanf(f,"NIF: %d ; ID: %d\n",&nifCartas,&idCartas) != EOF){
+        while(fread(&vendas, sizeof(venda),1,p) == 1){
+            if(nifCartas == vendas.nif){
                ++count;  
             }
-            if(count > 2){
-                printf("asdf");
-            }
         }
+         if(count >= 2){
+            fwrite(&nifCartas,sizeof(int),1,fp);
+            fwrite(&idCartas,sizeof(int),1,fp);
+         }
+         else if(count == 0){
+            fwrite(&nifCartas,sizeof(int),1,fp);
+            fwrite(&a,sizeof(int),1,fp);   
+         }  
+         count = 0;
+         rewind(p);
     }
     fclose(f);
     fclose(p);
     fclose(fp);
+}
+
+void printFileCC(char *nomeFicheiro) {
+    FILE *f;
+    struct cc a;
+    
+    f = fopen(nomeFicheiro, "rb");
+    if (f == NULL)
+    {
+        printf("ERRO no acesso ao ficheiro\n");
+        return;
+    }
+
+    while (fread(&a, sizeof(struct cc), 1, f) == 1)
+        printf("NIF: %d ; ID:  %d\n", a.nif, a.id);
+    fclose(f);
 }

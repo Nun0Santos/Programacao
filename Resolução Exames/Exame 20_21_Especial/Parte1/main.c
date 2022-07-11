@@ -1,13 +1,15 @@
 #include "strucst.h"
 #include <stdio.h>
 #include <stdlib.h>
-
+#define N 4
 
 pPaciente criaLista();
-void mostraTudo(pPaciente p, int tam);
+void mostraTudo(pPaciente p[], int tam);
+int P1Ex1(pPaciente p[],int tam);
 
 int main(){
     pPaciente lista = criaLista();
+
     mostraTudo(lista,4);
 
 }
@@ -39,26 +41,26 @@ pPaciente criaLista(){
         lista = novoP;
     }
     for(int j=0; j<novoP->internamentos; ++j){
-        novoI = malloc(sizeof(internamentos));
+        novoI = malloc(sizeof(Inter));
         *novoI = internamentos[k--];
         novoI->prox = novoP->lista;
         novoP->lista = novoI;
     }
-
     return lista;
-
 }
 
-void mostraTudo(pPaciente p, int tam){
+void mostraTudo(pPaciente p[], int tam){
     pInter auxA;
-    auxA = p->lista;
-   
+    
     for(int i = 0; i<tam; ++i){
-        for(int j=0; j<p->internamentos; ++j){
-            while(auxA != NULL){
-                printf("Data: %d-%d\tInternamentos: %d\n",auxA[j].din.dia,auxA[j].din.mes,auxA[j].nDias);    
-                auxA = auxA->prox;      
-            }
+      auxA =  p[i]->lista;
+        while(auxA != NULL){
+            printf("Data: %d-%d\tInternamentos: %d\n",auxA->din.dia,auxA->din.mes,auxA->nDias);    
+            auxA = auxA->prox;                 
         } 
     }   
+}
+
+int P1Ex1(pPaciente p[],int tam){
+
 }
